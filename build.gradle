@@ -1,0 +1,30 @@
+group 'geb_clinicwise'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+}
+ext {
+    drivers = ["firefox", "chrome"]
+
+    ext {
+        groovyVersion = '2.3.11'
+        gebVersion = '1.1.1'
+        spockVersion = '1.1-groovy-2.4'
+        chromeDriverVersion = '3.4.0'
+    }
+}
+
+dependencies {
+    testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    testCompile "org.spockframework:spock-core:$spockVersion"
+    testCompile "org.gebish:geb-spock:$gebVersion"
+    testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$chromeDriverVersion"
+}
+
+test{
+    maxParallelForks = 2
+}
+
