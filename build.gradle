@@ -22,6 +22,7 @@ dependencies {
     testCompile "org.spockframework:spock-core:$spockVersion"
     testCompile "org.gebish:geb-spock:$gebVersion"
     testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$chromeDriverVersion"
+    testCompile "org.seleniumhq.selenium:selenium-support:$chromeDriverVersion"
 }
 
 test{

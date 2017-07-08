@@ -1,30 +1,29 @@
 package net.clinicwise.sandbox.Page
 
 import geb.Module
-import geb.Page
-
 /**
  * Created by artyom on 07.07.17.
  */
-class MainPage extends Page {
+class MainPage extends BasePage {
     static at = { waitFor { $("div#flash_notice").text() == "Signed in successfully." } }
     static content = {
         accountName { $("#user_nav_link > span") }
-        userNav { waitFor { $("ul.user-menu").module(UserNav) } }
+        sideBar { waitFor { $("div#sidebar-shortcuts").module(SideBar) } }
     }
 
     boolean isAccountName(String name) {
         accountName.text() == name
     }
 
-    def logout() {
-        accountName.click()
-        userNav.logoutMenu.click()
+    def goToNewClient() {
+        sideBar.newClientBtn.click()
+        return browser.page
     }
 }
 
-class UserNav extends Module {
+
+class SideBar extends Module {
     static content = {
-        logoutMenu { $("a#sign_out_link") }
+        newClientBtn(to: NewClientPage) { $("button#shortcut_plus_client_btn") }
     }
 }

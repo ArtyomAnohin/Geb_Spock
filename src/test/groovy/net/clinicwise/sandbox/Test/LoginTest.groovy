@@ -13,21 +13,24 @@ class LoginTest extends GebSpec {
 
     def "User can successfully login"() {
         when:
-        submitForm("natalie", "test")
+            submitForm("natalie", "test")
         then:
-        at MainPage
+            at MainPage
         and:
-        isAccountName "Natalie Portman"
-        and:
-        logout()
-        at LoginPage
+            isAccountName "Natalie Portman"
     }
 
     def setupSpec() {
         when:
-        to LoginPage
+            to LoginPage
         then:
-        at LoginPage
+            at LoginPage
+    }
+    def cleanupSpec(){
+        when:
+            logout()
+        then:
+            at LoginPage
     }
 
 }
